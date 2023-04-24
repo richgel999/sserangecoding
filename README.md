@@ -7,7 +7,10 @@ The performance of a vectorized range decoder like this is highly dependent (rea
 
 The one advantage range coding has vs. ANS is patents. At least one corporation (Microsoft) has at least one [ANS patent](https://www.theregister.com/2022/02/17/microsoft_ans_patent/). **By comparison range coding is >40 years old and is unlikely to be a patent minefield.**
 
-Note the encoder is not optimized yet- just the vectorized decoder, which is my primary concern.
+## Notes
+
+- The decoder is "safe" against accidental or purposely corruption, i.e. it shouldn't ever read past the end of the input buffer or crash on invalid/corrupt inputs. I am still testing this, however. 
+- The encoder is not optimized yet: just the vectorized decoder, which is my primary concern.
 
 ## Compiling
 
