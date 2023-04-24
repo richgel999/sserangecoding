@@ -10,7 +10,7 @@ The one advantage Range Coding has vs. ANS is patents. At least one corporation 
 ## Notes
 
 - The decoder is "safe" against accidental or purposely corruption, i.e. it shouldn't ever read past the end of the input buffer or crash on invalid/corrupt inputs. I am still testing this, however. 
-- The encoder is not optimized yet: just the vectorized decoder, which is my primary concern.
+- The encoder is not optimized yet: just the vectorized decoder, which is my primary concern. I'm currently doubtful that interleaved Range Coding will ever be as fast as rANS, because of the post-encode swizzle step needed to interleave the byte streams from the individual encoders.
 
 ## Compiling
 
