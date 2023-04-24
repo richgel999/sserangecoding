@@ -13,7 +13,7 @@ The one advantage Range Coding has vs. ANS is patents. At least one corporation 
 
 - The encoder swizzles each individual range encoder's output bytes into the proper order right after compression. No special signaling or sideband information is needed between the encoder and decoder, because it's easy to predict how many bytes will be fetched from each stream during each coding/decoding step. This post-compression byte swizzling step is an annoying cost that rANS doesn't pay. I'm unsure if this step can be further optimized.
 - The decoder is safe against accidental or purposely corruption, i.e. it shouldn't ever read past the end of the input buffer or crash on invalid/corrupt inputs. I am still testing this, however. 
-- The encoder is not optimized yet: just the vectorized decoder, which is my primary concern. I'm currently doubtful that interleaved Range Coding will ever be as fast as rANS, because of the post-encode swizzle step needed to interleave the byte streams from the individual encoders.
+- The encoder is not optimized yet: just the vectorized decoder, which is my primary concern. 
 
 ## Compiling
 
