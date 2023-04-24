@@ -31,6 +31,14 @@ Running `sserangecoding` with no command line parameters will load book1 from th
 
 `sserangecoding d cmp_file out_file` will decompress cmp_file to out_file using order-0 range coding. A CRC-32 check (which isn't very fast) is used to verify the decompressed data.
 
+## Usage
+
+Include sserangecoder.h. If decoding, call sserangecoder::vrange_init(). 
+
+For encoding: construct an array of symbol frequencies, then call vrange_create_cum_probs() with this array to create an array of scaled cumulative frequencies. Then the easiest thing to do is then call vrange_encode() to encode a buffer which can be decoded using vrange_decode().
+
+For decoding: in addition to the scaled cumulative frequencies table, you'll need to build a lookup table used to accelerate decoding by calling vrange_init_table(). vrange_decode() can be used to decode a buffer. See the lower level helper functions vrange_decode() and vrange_normalize() (which work together) for the lower level vectorized decoding functions.
+
 ## Example output for book1 (Core i7 1065G7, Ice Lake, 2020 Dell Inspiron 5000 ~3.9 GHz)
 
 ```
