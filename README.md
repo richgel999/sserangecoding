@@ -1,5 +1,5 @@
 # sserangecoding
-SSE 4.1 24-bit [Range Coder](https://en.wikipedia.org/wiki/Range_coding) for 8-bit alphabets. 
+This repo contains a fast SSE 4.1 optimized 24-bit [Range Coder](https://en.wikipedia.org/wiki/Range_coding) for 8-bit alphabets. 
 
 The vectorized decoder uses 16 interleaved streams (in 4 groups of 4 lanes). 24-bit integers are used to enable using fast lossless (non-approximated) vectorized divides using `_mm_div_ps`. The encoder swizzles each individual range encoder's output bytes into the proper order right after compression. SSE 4.1 decoding is very fast on the Intel CPU's I've tried, at around 550-700 MiB/sec (2.2-2.4 cycles/byte on Ice Lake). This seems roughly competitive vs. [rANS](https://en.wikipedia.org/wiki/Asymmetric_numeral_systems) decoding, at least on modern Intel CPU's. No special signaling or sideband information is needed between the encoder and decoder, because it's easy to predict how many bytes will be fetched from each stream.
 
