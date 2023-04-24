@@ -12,10 +12,6 @@ Use [cmake](https://cmake.org/) under Linux or under Windows with Visual Studio 
 
 Under Windows I've tested with clang, VS 2019 and VS 2022. Under Linux I've tested with clang v10 and gcc v9.3.0.
 
-## License
-
-See [unlicense.org](https://unlicense.org/). This code is public domain in the US.
-
 ## Testing
 
 Running `sserangecoding` with no command line parameters will load book1 from the current directory, compress it, then uncompress it in various ways. 
@@ -71,3 +67,7 @@ Decompression OK
 0.001300 seconds, 563.8 MiB/sec., 2.5 cycles per byte
 Success
 ```
+
+## License
+
+See [unlicense.org](https://unlicense.org/). The files in this repo are Public Domain in the US and in jurisdictions that recognize copyright law, i.e. they are not copyrighted or anyone's intellectual propery.
