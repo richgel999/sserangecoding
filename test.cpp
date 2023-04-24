@@ -80,6 +80,8 @@ static uint64_t get_ticks_per_sec()
 
 static void panic(const char* pMsg, ...)
 {
+	fprintf(stderr, "ERROR: ");
+
 	va_list args;
 	va_start(args, pMsg);
 	vfprintf(stderr, pMsg, args);

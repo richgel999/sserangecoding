@@ -163,8 +163,9 @@ namespace sserangecoder
 			const uint32_t r = (m_arith_length >> cRangeCodecProbBits);
 
 			uint32_t q = m_arith_value / r;
-
-			uint32_t encoded_val = pTable[q];
+			
+			// AND is for safety in case the input stream is corrupted, it's not stricly necessary if you know it can't be
+			uint32_t encoded_val = pTable[q & (cRangeCodecProbScale - 1)];
 
 			uint32_t sym = encoded_val & 255;
 
