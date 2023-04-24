@@ -1,5 +1,7 @@
 # sserangecoding
-Fast SSE 4.1 range coder for 8-bit alphabets.
+Fast SSE 4.1 24-bit range coder for 8-bit alphabets. Note the encoder is not optimized, just the vectorized decoder. 
+
+The decoder uses 16 interleaved streams. No special signaling or sideband information is needed between the encoder and decoder. The encoder swizzles each individual range encoder's output bytes in the proper order right after compression.
 
 ## Compiling
 
