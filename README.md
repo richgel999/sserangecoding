@@ -1,7 +1,9 @@
 # sserangecoding
 Fast SSE 4.1 24-bit range coder for 8-bit alphabets. Note the encoder is not optimized, just the vectorized decoder. 
 
-The decoder uses 16 interleaved streams. 24-bit integers are used to enable using fast lossless (non-approximated) vectorized divides using `_mm_div_ps`. No special signaling or sideband information is needed between the encoder and decoder. The encoder swizzles each individual range encoder's output bytes into the proper order right after compression. SSE 4.1 decoding is very fast on the Intel CPU's I've tried, at around 550-700 MiB/sec (2.2-2.4 cycles/byte on Ice Lake).
+The vectorized decoder uses 16 interleaved streams (in 4 groups of 4 lanes). 24-bit integers are used to enable using fast lossless (non-approximated) vectorized divides using `_mm_div_ps`. The encoder swizzles each individual range encoder's output bytes into the proper order right after compression. SSE 4.1 decoding is very fast on the Intel CPU's I've tried, at around 550-700 MiB/sec (2.2-2.4 cycles/byte on Ice Lake). No special signaling or sideband information is needed between the encoder and decoder, because it's easy to predict how many bytes will be fetched from each stream.
+
+The performance of a vectorized range decoder like this is highly dependent (really, lives and dies) on the availability and performance of a fast hardware divider. This implementation specifically uses 24-bit integers to exploit _mm_div_ps. This is the only way I could find to make this decoder competitive.
 
 ## Compiling
 
