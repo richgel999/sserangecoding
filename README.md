@@ -12,6 +12,10 @@ Use [cmake](https://cmake.org/) under Linux or under Windows with Visual Studio 
 
 Under Windows I've tested with clang, VS 2019 and VS 2022. Under Linux I've tested with clang v10 and gcc v9.3.0.
 
+## License
+
+See [unlicense.org](https://unlicense.org/). This code is public domain in the US.
+
 ## Testing
 
 Running `sserangecoding` with no command line parameters will load book1 from the current directory, compress it, then uncompress it in various ways. 
