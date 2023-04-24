@@ -5,7 +5,7 @@ The vectorized decoder uses 16 interleaved streams (in 4 groups of 4 lanes). 24-
 
 The performance of a vectorized range decoder like this is highly dependent (really, completely lives and dies) on the availability and performance of a fast hardware divider. This implementation specifically uses 24-bit integers to exploit `_mm_div_ps`. After many experiments, this is the only way I could find to make this decoder competitive. Using 24-bit ints sacrifices some small amount of coding efficiency (a small fraction of a percent), but compared to length-limited Huffman coding it's still more efficient. The test app displays the theoretical file entropy along with the # of bits it would take to encode the input using the [Package Merge algorithm](https://create.stephan-brumme.com/length-limited-prefix-codes/) at various maximum code lengths, for comparison purposes.
 
-The one advantage range coding has vs. ANS is patents. At least one corporation (Microsoft) has at least one [ANS patent](https://www.theregister.com/2022/02/17/microsoft_ans_patent/).
+The one advantage range coding has vs. ANS is patents. At least one corporation (Microsoft) has at least one [ANS patent](https://www.theregister.com/2022/02/17/microsoft_ans_patent/). By comparison range coding is ~44 years old and is unlikely to be a patent minefield.
 
 ## Compiling
 
