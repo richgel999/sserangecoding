@@ -1,11 +1,13 @@
 # sserangecoding
-SSE 4.1 24-bit [range coder](https://en.wikipedia.org/wiki/Range_coding) for 8-bit alphabets. Note the encoder is not optimized, just the vectorized decoder. 
+SSE 4.1 24-bit [range coder](https://en.wikipedia.org/wiki/Range_coding) for 8-bit alphabets. 
 
 The vectorized decoder uses 16 interleaved streams (in 4 groups of 4 lanes). 24-bit integers are used to enable using fast lossless (non-approximated) vectorized divides using `_mm_div_ps`. The encoder swizzles each individual range encoder's output bytes into the proper order right after compression. SSE 4.1 decoding is very fast on the Intel CPU's I've tried, at around 550-700 MiB/sec (2.2-2.4 cycles/byte on Ice Lake). This seems roughly competitive vs. [rANS](https://en.wikipedia.org/wiki/Asymmetric_numeral_systems) decoding, at least on modern Intel CPU's. No special signaling or sideband information is needed between the encoder and decoder, because it's easy to predict how many bytes will be fetched from each stream.
 
 The performance of a vectorized range decoder like this is highly dependent (really, completely lives and dies) on the availability and performance of a fast hardware divider. This implementation specifically uses 24-bit integers to exploit `_mm_div_ps`. After many experiments, this is the only way I could find to make this decoder competitive. Using 24-bit ints sacrifices some small amount of coding efficiency (a small fraction of a percent), but compared to length-limited Huffman coding it's still more efficient. The test app displays the theoretical file entropy along with the # of bits it would take to encode the input using the [Package Merge algorithm](https://create.stephan-brumme.com/length-limited-prefix-codes/) at various maximum code lengths, for comparison purposes.
 
 The one advantage range coding has vs. ANS is patents. At least one corporation (Microsoft) has at least one [ANS patent](https://www.theregister.com/2022/02/17/microsoft_ans_patent/). **By comparison range coding is >40 years old and is unlikely to be a patent minefield.**
+
+Note the encoder is not optimized yet- just the vectorized decoder, which is my primary concern.
 
 ## Compiling
 
