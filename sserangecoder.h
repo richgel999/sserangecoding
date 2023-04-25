@@ -200,6 +200,7 @@ namespace sserangecoder
 	bool vrange_create_cum_probs(uint32_vec& scaled_cum_prob, uint32_vec& freq);
 	
 	// Decode 4 symbols from 4 range encoded streams using the specified lookup table
+	// Note: _MM_SET_ROUNDING_MODE(_MM_ROUND_TOWARD_ZERO); must be called before using this function, so the _mm_cvtps_epi32() rounds correctly.
 	static sser_forceinline uint32_t vrange_decode(__m128i& arith_value, __m128i& arith_length, const uint32_t* pTable)
 	{
 		__m128i r = _mm_srli_epi32(arith_length, cRangeCodecProbBits);
