@@ -5,7 +5,7 @@ SSE 4.1 decoding is very fast on the Intel/AMD CPU's I've tried, at around 550-7
 
 The one advantage Range Coding has vs. ANS is patents. At least one corporation (Microsoft) has at least one [ANS patent](https://www.theregister.com/2022/02/17/microsoft_ans_patent/). **By comparison range coding is >40 years old and is unlikely to be a patent minefield.**
 
-Disadvantages vs. rANS: less precise, slower encode (ultimately due to the post-encode swizzle step to get the byte streams in the right order), and it's heavily reliant on fast vectorized hardware division.
+Disadvantages vs. rANS: less precise, slower encode (ultimately due to the post-encode swizzle step to get the byte streams in the right order), and decoding is heavily reliant on fast vectorized hardware division.
 
 ## Implementation Notes
 
