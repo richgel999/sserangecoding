@@ -22,7 +22,7 @@ Use [cmake](https://cmake.org/) under Linux or Windows with Visual Studio 2019 o
 `cmake .`  
 `make`
 
-Under Windows I've tested with clang, VS 2019 and VS 2022. Under Linux I've tested with clang v10 and gcc v9.3.0.
+Under Windows I've tested with clang, MSVC 2019 and MSVC 2022. Under Linux I've tested with clang v10 and gcc v9.3.0.
 
 ## Testing
 
