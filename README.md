@@ -17,7 +17,7 @@ Disadvantages vs. rANS: less precise, slower encode (ultimately due to the post-
 
 ## Compiling
 
-Use [cmake](https://cmake.org/) under Linux or under Windows with Visual Studio 2019 or 2022:
+Use [cmake](https://cmake.org/) under Linux or Windows with Visual Studio 2019 or 2022:
 
 `cmake .`  
 `make`
