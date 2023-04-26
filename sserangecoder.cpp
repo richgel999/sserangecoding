@@ -228,15 +228,8 @@ namespace sserangecoder
 					most_prob_sym_index = i;
 				}
 
-				uint32_t l;
-				if (!freq[i])
-					l = 1;
-				else
-				{
-					l = (uint32_t)(((uint64_t)freq[i] * adjusted_prob_scale) / total_freq);
-
-					l = clamp<uint32_t>(l, 1, cRangeCodecProbScale - (total_used_syms - 1));
-				}
+				uint32_t l = (uint32_t)(((uint64_t)freq[i] * adjusted_prob_scale) / total_freq);
+				l = clamp<uint32_t>(l, 1, cRangeCodecProbScale - (total_used_syms - 1));
 
 				if ((pass) && (i == sym_index_to_boost))
 					l += boost_amount;
