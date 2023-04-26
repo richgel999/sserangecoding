@@ -367,9 +367,6 @@ namespace sserangecoder
 			*arith_vals[vec_index] = x;
 		}
 						
-		const uint32_t old_csr = _mm_getcsr();
-		_MM_SET_ROUNDING_MODE(_MM_ROUND_TOWARD_ZERO);
-				
 		const uint8_t* pSrc_end = pSrc + comp_size;
 		size_t dst_ofs = 0;
 		
@@ -390,9 +387,7 @@ namespace sserangecoder
 			vrange_normalize(arith_value2, arith_length2, pSrc);
 			vrange_normalize(arith_value3, arith_length3, pSrc);
 		}
-
-		_mm_setcsr(old_csr);
-
+				
 		// Finish the end with scalar code
 		range_dec scalar_dec;
 		while (dst_ofs < orig_size)
