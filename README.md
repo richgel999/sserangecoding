@@ -28,6 +28,8 @@ Under Windows I've tested with clang, MSVC 2019 and MSVC 2022. Under Linux I've 
 
 Running `sserangecoding` with no command line parameters will load book1 from the current directory, compress it, then uncompress it in various ways. 
 
+`sserangecoding filename` will run the test mode using the specified file instead of book1.
+
 `sserangecoding -h` displays help.
 
 `sserangecoding c in_file cmp_file` will compress in_file to out_file using order-0 range coding. 
