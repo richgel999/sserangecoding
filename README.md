@@ -5,7 +5,7 @@ SSE 4.1 decoding is very fast on the Intel/AMD CPU's I've tried, at around 550-7
 
 The one advantage Range Coding has vs. ANS is patents. At least one corporation (Microsoft) has at least one [ANS patent](https://www.theregister.com/2022/02/17/microsoft_ans_patent/). **By comparison range coding is >40 years old and is unlikely to be a patent minefield.**
 
-Disadvantages vs. rANS: less precise, slower encode (ultimately due to the post-encode swizzle step to get the byte streams in the right order), and it's heavily reliant on fast vectorized hardware division.
+Disadvantages vs. rANS: less precise, slower encode (ultimately due to the post-encode swizzle step to get the byte streams in the right order), and decoding is heavily reliant on fast vectorized hardware division.
 
 ## Implementation Notes
 
@@ -38,7 +38,7 @@ Running `sserangecoding` with no command line parameters will load book1 from th
 
 Include `sserangecoder.h`. If decoding, call `sserangecoder::vrange_init()`. 
 
-For encoding: construct an array of symbol frequencies, then call `vrange_create_cum_probs()` with this array to create an array of scaled cumulative frequencies. Then the easiest thing to do is then call `vrange_encode()` to encode a buffer which can be decoded using `vrange_decode()`.
+For encoding: construct an array of symbol frequencies, then call `vrange_create_cum_probs()` with this array to create an array of scaled cumulative frequencies. Then the easiest thing to do is next call `vrange_encode()` to encode a buffer which can be decoded using `vrange_decode()`.
 
 For decoding: in addition to the scaled cumulative frequencies table, you'll need to build a lookup table used to accelerate decoding by calling `vrange_init_table()`. `vrange_decode()` can be used to decode a buffer. See the lower level helper functions `vrange_decode()` (which is an overloaded name) and `vrange_normalize()` (which work together) for the lower level vectorized decoding functions.
 
