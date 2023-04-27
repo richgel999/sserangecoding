@@ -11,7 +11,7 @@ Disadvantages vs. rANS: less precise, slower encode (ultimately due to the post-
 
 - The vectorized decoder uses 16 interleaved streams (in 4 groups of 4 lanes). 24-bit integers are used to enable using fast precise integer vectorized divides with `_mm_div_ps`, which is crucial for performance. The performance and practicality of a vectorized range decoder like this is highly dependent (really, completely lives and dies!) on the availability and performance of fast hardware division. This implementation specifically uses 24-bit integers, otherwise the results from `_mm_div_ps` (with a subsequent conversion back to int with truncation) wouldn't be accurate. After many experiments, this is the only way I could find to make this decoder competitive. 
 - Using 24-bit ints sacrifices some small amount of coding efficiency (a small fraction of a percent), but compared to length-limited Huffman coding it's still more efficient. The test app displays the theoretical file entropy along with the # of bytes it would take to encode the input using [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding) with the [Package Merge algorithm](https://create.stephan-brumme.com/length-limited-prefix-codes/) at various maximum code lengths, for comparison purposes.
-- The encoder swizzles each individual range encoder's output bytes into the proper order right after compression. No special signaling or sideband information is needed between the encoder and decoder, because it's easy to predict how many bytes will be fetched from each stream during each coding/decoding step. This post-compression byte swizzling step is an annoying cost that rANS doesn't pay. I'm unsure if this step can be further optimized.
+- The encoder swizzles each individual range encoder's output bytes into the proper order right after compression. No special signaling or sideband information is needed between the encoder and decoder, because it's easy to predict how many bytes will be fetched from each stream during each coding/decoding step. (Notably, at each encode step you can record the # of bytes flushed to the output, which in this implementation is always [0,2] bytes per step. The decoder always reads the same # of bytes from the stream as the encoder wrote for that step, but from a different offset.) This post-compression byte swizzling step is an annoying cost that rANS doesn't pay. I'm unsure if this step can be further optimized.
 - The decoder is safe against accidental or purposeful corruption, i.e. it shouldn't ever read past the end of the input buffer or crash on invalid/corrupt inputs. I am still testing this, however. 
 - The encoder is not optimized yet: just the vectorized decoder, which is my primary concern. 
 
@@ -28,11 +28,17 @@ Under Windows I've tested with clang, MSVC 2019 and MSVC 2022. Under Linux I've 
 
 Running `sserangecoding` with no command line parameters will load book1 from the current directory, compress it, then uncompress it in various ways. 
 
+`sserangecoding filename` will run the test mode using the specified file instead of book1.
+
 `sserangecoding -h` displays help.
 
-`sserangecoding c in_file cmp_file` will compress in_file to out_file using order-0 range coding. 
+## Additional Options
 
-`sserangecoding d cmp_file out_file` will decompress cmp_file to out_file using order-0 range coding. A CRC-32 check (which isn't very fast) is used to verify the decompressed data. The test app is not intended to be a good file compressor: it stores 256 scaled 16-bit symbol frequencies to the compressed file (512 bytes of overhead). The goal is to prove that this codec works and facilitate automated fuzz testing.
+The test app is not intended to be a good file compressor: it stores 256 scaled 16-bit symbol frequencies to the compressed file (512 bytes of overhead). The goal of the 'c' and 'd' commands is to prove that this codec works and facilitate automated fuzz testing.
+
+`sserangecoding c in_file cmp_file` will compress in_file to cmp_file using order-0 range coding. The symbol frequencies are scaled to 16-bits which will likely impact compression efficiency vs. the test mode, which uses 32-bit frequencies.
+
+`sserangecoding d cmp_file out_file` will decompress cmp_file to out_file using order-0 range coding. A CRC-32 check (which isn't very fast) is used to verify the decompressed data. Set `DECOMP_CRC32_CHECKING` to 0 in test.cpp to disable the CRC-32 check.
 
 ## Usage
 
