@@ -32,9 +32,13 @@ Running `sserangecoding` with no command line parameters will load book1 from th
 
 `sserangecoding -h` displays help.
 
+## Additional Options
+
+The test app is not intended to be a good file compressor: it stores 256 scaled 16-bit symbol frequencies to the compressed file (512 bytes of overhead). The goal of the 'c' and 'd' commands is to prove that this codec works and facilitate automated fuzz testing.
+
 `sserangecoding c in_file cmp_file` will compress in_file to out_file using order-0 range coding. 
 
-`sserangecoding d cmp_file out_file` will decompress cmp_file to out_file using order-0 range coding. A CRC-32 check (which isn't very fast) is used to verify the decompressed data. The test app is not intended to be a good file compressor: it stores 256 scaled 16-bit symbol frequencies to the compressed file (512 bytes of overhead). The goal of the 'c' and 'd' commands is to prove that this codec works and facilitate automated fuzz testing.
+`sserangecoding d cmp_file out_file` will decompress cmp_file to out_file using order-0 range coding. A CRC-32 check (which isn't very fast) is used to verify the decompressed data. 
 
 ## Usage
 
