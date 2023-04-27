@@ -38,7 +38,7 @@ The test app is not intended to be a good file compressor: it stores 256 scaled 
 
 `sserangecoding c in_file cmp_file` will compress in_file to out_file using order-0 range coding. 
 
-`sserangecoding d cmp_file out_file` will decompress cmp_file to out_file using order-0 range coding. A CRC-32 check (which isn't very fast) is used to verify the decompressed data. 
+`sserangecoding d cmp_file out_file` will decompress cmp_file to out_file using order-0 range coding. A CRC-32 check (which isn't very fast) is used to verify the decompressed data. Set DECOMP_CRC32_CHECKING to 0 in test.cpp to disable the CRC-32 check.
 
 ## Usage
 
