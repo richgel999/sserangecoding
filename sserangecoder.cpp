@@ -269,9 +269,7 @@ namespace sserangecoder
 		range_enc encs[LANES];
 		uint8_vec bytes_written(file_size);
 		uint64_t total_enc_size = 0;
-
-		enc_buf.resize(LANES * 3 + file_size + 2);
-
+				
 		for (uint32_t i = 0; i < LANES; i++)
 			encs[i].get_buf().reserve(1 + (file_size / LANES));
 
