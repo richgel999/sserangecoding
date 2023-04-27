@@ -144,7 +144,7 @@ namespace sserangecoder
 		const uint32_t num_syms = (uint32_t)freq.size();
 		assert((num_syms >= cRangeCodecMinSyms) && (num_syms <= cRangeCodecMaxSyms));
 
-		if ((num_syms < 1) || (num_syms > cRangeCodecMaxSyms))
+		if ((num_syms < cRangeCodecMinSyms) || (num_syms > cRangeCodecMaxSyms))
 			return false;
 
 		uint64_t total_freq = 0;
