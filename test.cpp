@@ -309,7 +309,7 @@ static bool interleaved_encode(const uint8_vec& file_data, uint8_vec& comp_data)
 	// Reduce frequencies to 16-bits (hurts efficiency, but reduces the overhead).
 	for (uint32_t i = 0; i < 256; i++)
 		if (sym_freq[i])
-			sym_freq[i] = std::max<uint32_t>(1, (UINT16_MAX * sym_freq[i] + (max_freq / 2)) / max_freq);
+			sym_freq[i] = std::max<uint32_t>(1, (UINT16_MAX * (uint64_t)sym_freq[i] + (max_freq / 2)) / max_freq);
 
 	comp_data.resize(0);
 	comp_data.reserve(file_data.size());
