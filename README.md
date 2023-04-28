@@ -94,11 +94,18 @@ Decompression OK
 Success
 ```
 
-For comparison purposes, here's how Collet's scalar [FSE benchmark](https://github.com/Cyan4973/FiniteStateEntropy/tree/dev) performs on book1 on the same machine. Not sure why range coding resuls in a smaller file vs. this FSE implementation:
+For comparison purposes, here's how Collet's scalar [FSE benchmark](https://github.com/Cyan4973/FiniteStateEntropy/tree/dev) performs on book1 on the same machine. Not sure why range coding resuls in a smaller file vs. this FSE implementation (-b book1):
 
 ```
 FSE : Finite State Entropy, 64-bits demo by Yann Collet (Apr 27 2023)
 gary_corpus\book1 :    768771 ->    437232 (56.87%),  331.4 MB/s ,  370.3 MB/s
+```
+
+In Huffman mode (-h -b book1):
+
+```
+FSE : Finite State Entropy, 64-bits demo by Yann Collet (Apr 27 2023)
+gary_corpus\book1 :    768771 ->    439150 (57.12%),  648.8 MB/s ,  800.9 MB/s
 ```
 
 ## License
