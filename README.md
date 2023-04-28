@@ -108,6 +108,53 @@ FSE : Finite State Entropy, 64-bits demo by Yann Collet (Apr 27 2023)
 gary_corpus\book1 :    768771 ->    439150 (57.12%),  648.8 MB/s ,  800.9 MB/s
 ```
 
+Here's [ryg_rans](https://github.com/rygorous/ryg_rans) (SSE 4.1 interleaved rANS) on the same machine, but running under Linux and built with clang:
+
+```
+/mnt/d/dev/ryg_rans-master$ ./exam_simd_sse41
+rANS encode:
+10269804 clocks, 13.4 clocks/symbol (106.8MiB/s)
+6694371 clocks, 8.7 clocks/symbol (164.0MiB/s)
+7874894 clocks, 10.2 clocks/symbol (139.4MiB/s)
+10604580 clocks, 13.8 clocks/symbol (103.5MiB/s)
+6448287 clocks, 8.4 clocks/symbol (170.2MiB/s)
+rANS: 435604 bytes
+5312245 clocks, 6.9 clocks/symbol (206.6MiB/s)
+5622944 clocks, 7.3 clocks/symbol (195.2MiB/s)
+5077465 clocks, 6.6 clocks/symbol (216.2MiB/s)
+5023212 clocks, 6.5 clocks/symbol (218.5MiB/s)
+4921714 clocks, 6.4 clocks/symbol (223.0MiB/s)
+decode ok!
+
+interleaved rANS encode:
+4755808 clocks, 6.2 clocks/symbol (230.7MiB/s)
+4336588 clocks, 5.6 clocks/symbol (253.1MiB/s)
+4096033 clocks, 5.3 clocks/symbol (268.0MiB/s)
+4802643 clocks, 6.2 clocks/symbol (228.5MiB/s)
+5357016 clocks, 7.0 clocks/symbol (204.9MiB/s)
+interleaved rANS: 435606 bytes
+3441391 clocks, 4.5 clocks/symbol (318.9MB/s)
+3352760 clocks, 4.4 clocks/symbol (327.3MB/s)
+3309458 clocks, 4.3 clocks/symbol (331.6MB/s)
+3448932 clocks, 4.5 clocks/symbol (318.0MB/s)
+4722032 clocks, 6.1 clocks/symbol (232.3MB/s)
+decode ok!
+
+interleaved SIMD rANS encode: (encode itself isn't SIMD)
+4428328 clocks, 5.8 clocks/symbol (247.8MiB/s)
+4440744 clocks, 5.8 clocks/symbol (247.2MiB/s)
+4812514 clocks, 6.3 clocks/symbol (228.0MiB/s)
+5777703 clocks, 7.5 clocks/symbol (189.9MiB/s)
+4701167 clocks, 6.1 clocks/symbol (233.4MiB/s)
+SIMD rANS: 435626 bytes
+2057385 clocks, 2.7 clocks/symbol (533.3MB/s)
+2022259 clocks, 2.6 clocks/symbol (542.6MB/s)
+1940053 clocks, 2.5 clocks/symbol (565.6MB/s)
+2032723 clocks, 2.6 clocks/symbol (539.0MB/s)
+2138407 clocks, 2.8 clocks/symbol (512.8MB/s)
+decode ok!
+```
+
 ## License
 
 See [unlicense.org](https://unlicense.org/). The files in this repo are Public Domain in the US and in jurisdictions that recognize copyright law, i.e. they are not copyrighted or anyone's intellectual propery.
