@@ -96,8 +96,10 @@ Success
 
 For comparison purposes, here's how Collet's scalar [FSE benchmark](https://github.com/Cyan4973/FiniteStateEntropy/tree/dev) performs on book1 on the same machine. Not sure why range coding resuls in a smaller file vs. this FSE implementation:
 
+```
 FSE : Finite State Entropy, 64-bits demo by Yann Collet (Apr 27 2023)
 gary_corpus\book1 :    768771 ->    437232 (56.87%),  331.4 MB/s ,  370.3 MB/s
+```
 
 ## License
 
