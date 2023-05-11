@@ -160,7 +160,7 @@ decode ok!
 ## Special Thanks
 
 Thanks to PowTurbo for their "Turbo Range Coder" and "Turbo Histogram" repositories, which I studied while working on this code:
-https://github.com/powturbo/Turbo-Range-Coder
+https://github.com/powturbo/Turbo-Range-Coder  
 https://github.com/powturbo/Turbo-Histogram
 
 Also thanks to Igor Pavlov and Dmitry Subbotin for open sourcing their scalar range coders, which were essential resources.
