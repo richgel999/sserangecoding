@@ -118,6 +118,8 @@ namespace sserangecoder
 	// Create lookup table for the vectorized range decoder
 	void vrange_init_table(uint32_t num_syms, const uint32_vec& scaled_cum_prob, uint32_vec& table)
 	{
+		assert(*(const uint32_t*)&g_byte_shuffle_mask != 0);
+
 		table.resize(cRangeCodecProbScale);
 		assert(scaled_cum_prob.size() == (num_syms + 1));
 
@@ -141,6 +143,8 @@ namespace sserangecoder
 	// freq may be modified if the number of used syms was 1
 	bool vrange_create_cum_probs(uint32_vec& scaled_cum_prob, uint32_vec& freq)
 	{
+		assert(*(const uint32_t*)&g_byte_shuffle_mask != 0);
+
 		const uint32_t num_syms = (uint32_t)freq.size();
 		assert((num_syms >= cRangeCodecMinSyms) && (num_syms <= cRangeCodecMaxSyms));
 
@@ -263,6 +267,8 @@ namespace sserangecoder
 
 	void vrange_encode(const uint8_vec& file_data, uint8_vec& enc_buf, const uint32_vec& scaled_cum_prob)
 	{
+		assert(*(const uint32_t*)&g_byte_shuffle_mask != 0);
+
 		const size_t file_size = file_data.size();
 		assert(file_size);
 
@@ -340,6 +346,8 @@ namespace sserangecoder
 
 	bool vrange_decode(const uint8_t *pSrc_start, size_t comp_size, uint8_t *pDst_start, size_t orig_size, const uint32_t *pDec_table)
 	{
+		assert(*(const uint32_t*)&g_byte_shuffle_mask != 0);
+
 		const uint8_t* pSrc = pSrc_start;
 
 		__m128i arith_value0, arith_value1, arith_value2, arith_value3;

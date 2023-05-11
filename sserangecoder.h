@@ -44,6 +44,7 @@ namespace sserangecoder
 	static __m128i g_dist_shuf[256];
 	static __m128i g_byte_shuffle_mask;
 
+	// Important: vrange_init() MUST be called sometime before utilizing the encoder or decoder.
 	void vrange_init();
 	
 	// Scalar range encoder
