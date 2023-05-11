@@ -44,7 +44,7 @@ The test app is not intended to be a good file compressor: it stores 256 scaled 
 
 ## Usage
 
-Include `sserangecoder.h`. If decoding, call `sserangecoder::vrange_init()`. 
+Include `sserangecoder.h`. Call `sserangecoder::vrange_init()` somewhere before using any other functionality.
 
 For encoding: construct an array of symbol frequencies, then call `vrange_create_cum_probs()` with this array to create an array of scaled cumulative frequencies. Then the easiest thing to do is next call `vrange_encode()` to encode a buffer which can be decoded using `vrange_decode()`.
 
