@@ -157,6 +157,14 @@ SIMD rANS: 435626 bytes
 decode ok!
 ```
 
+## Special Thanks
+
+Thanks to PowTurbo for their "Turbo Range Coder" and "Turbo Histogram" repositories, which I studied while working on this code:
+https://github.com/powturbo/Turbo-Range-Coder
+https://github.com/powturbo/Turbo-Histogram
+
+Also thanks to Igor Pavlov and Dmitry Subbotin for open sourcing their scalar range coders, which were essential resources.
+
 ## License
 
 See [unlicense.org](https://unlicense.org/). The files in this repo are Public Domain in the US and in jurisdictions that recognize copyright law, i.e. they are not copyrighted or anyone's intellectual propery.
