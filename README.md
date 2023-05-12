@@ -1,5 +1,5 @@
 # sserangecoding
-This repo contains a fast SSE 4.1 optimized 24-bit interleaved [Range Coder](https://en.wikipedia.org/wiki/Range_coding) for 8-bit alphabets. 
+This repo contains a fast SSE 4.1 optimized 24-bit interleaved Pavlov/Subbotin [Range Coder](https://en.wikipedia.org/wiki/Range_coding) for 8-bit alphabets. 
 
 SSE 4.1 decoding is very fast on the Intel/AMD CPU's I've tried, at around 550-700 MiB/sec (2.2-2.4 cycles/byte) on Ice Lake, 650 MiB/sec. on 4GHz Skylake, and 550 MiB/sec. on a Ryzen 5 3450U. This seems roughly competitive vs. [rANS](https://en.wikipedia.org/wiki/Asymmetric_numeral_systems) decoding using SSE 4.1.
 
