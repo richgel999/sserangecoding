@@ -7,7 +7,7 @@ The one advantage Range Coding has vs. ANS is patents. At least one corporation 
 
 Disadvantages vs. rANS: less precise (possibly - on book1 24-bit range coding is more efficient than this [FSE implementation](https://github.com/Cyan4973/FiniteStateEntropy/tree/dev)), slower encode (ultimately due to the post-encode swizzle step to get the byte streams in the right order), and decoding is heavily reliant on fast vectorized hardware division. On modern CPU's vectorized single precision division is not a deal breaker.
 
-A relatively straighforward AVX-2 port of this code (bumped up to 64 interleaved streams) gets 1,373 MiB/sec. decoding book1 on Intel Ice Lake., or 1.87x faster vs. the fastest SSE 4.1 range coder I've implemented.
+A relatively straighforward AVX-2 port of this code (bumped up to 64 interleaved streams) gets 1,373 MiB/sec. decoding book1 on Ice Lake., or 1.87x faster vs. the fastest SSE 4.1 range coder I've implemented.
 
 ## Implementation Notes
 
